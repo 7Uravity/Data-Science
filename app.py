@@ -15,7 +15,7 @@ path= 'Training_data'
 df= pd.read_csv('vestiaire.csv')
 df['usually_ships_within']= df['usually_ships_within'].fillna(df['usually_ships_within'].mode())
 df['product_season']= df['product_season'].fillna('Spring / Summer')
-df['buyers_fees']= data['buyers_fees'].fillna(df['buyers_fees'].median())
+df['buyers_fees']= df['buyers_fees'].fillna(df['buyers_fees'].median())
 df.dropna(axis=0,inplace=True)
 
 def concatenate_columns(df, columns, new_column_name):
