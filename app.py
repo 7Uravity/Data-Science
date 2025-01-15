@@ -13,6 +13,28 @@ model= load_model()
 
 path= 'Training_data'
 df= pd.read_csv('vestiaire.csv')
+df['usually_ships_within']= df['usually_ships_within'].fillna(df['usually_ships_within'].mode())
+df['product_season']= df['product_season'].fillna('Spring / Summer')
+df['buyers_fees']= data['buyers_fees'].fillna(df['buyers_fees'].median())
+df.dropna(axis=0,inplace=True)
+
+def concatenate_columns(df, columns, new_column_name):
+    df[new_column_name] = df[columns[0]].astype(str) + ' ' + df[columns[1]].astype(str)
+    return df
+
+df= concatenate_columns(df, ['brand_name','product_type'], 'product_new_keywords')
+
+df.drop(['product_keywords','product_name','product_description','reserved','sold','should_be_gone','has_cross_border_fees'],axis=1,inplace=True)
+
+df.rename(mapper={'product_gender_target':'target_audience','product_like_count':'product_likes',
+                          'seller_num_products_listed':'seller_listed_products_for_sale',
+                          'product_new_keywords':'product_name'
+                          },axis=1,inplace=True)
+
+
+num_cols=df.drop(['product_id','brand_id','seller_id'],axis=1).select_dtypes(include=np.number)
+cat_cols=df.select_dtypes(include=['object','bool'])
+
 X_train= df.drop(['price_usd'], axis=1)
 
 brands= list(X_train['brand_name'].unique())
