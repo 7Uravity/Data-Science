@@ -107,7 +107,8 @@ if st.button('Submit'):
     # Reorder the user input columns to match X_train's order
     user_input = user_input[X_train.columns]
 
-    # user_input= user_input.drop(['Unnamed: 0'],axis=1)
+    if 'Unnamed: 0' in user_input.columns:
+        user_input = user_input.drop(['Unnamed: 0'], axis=1)
 
     log_prediction= model.predict(user_input)
     prediction = np.exp(log_prediction)
