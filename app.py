@@ -12,7 +12,7 @@ def load_model():
 model= load_model()
 
 path= 'Training_data'
-df= pd.read_csv('vestiaire.csv', index_col=0)
+df= pd.read_csv('vestiaire.csv')
 df['usually_ships_within']= df['usually_ships_within'].fillna(df['usually_ships_within'].mode())
 df['product_season']= df['product_season'].fillna('Spring / Summer')
 df['buyers_fees']= df['buyers_fees'].fillna(df['buyers_fees'].median())
