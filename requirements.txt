@@ -1,0 +1,17 @@
+streamlit
+numpy
+pandas
+matplotlib
+seaborn
+plotly
+charset_normalizer
+folium
+geopandas
+geopy
+altair
+nbformat
+scikit-learn
+category_encoders
+xgboost
+joblib
+lightgbm
