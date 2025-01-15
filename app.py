@@ -11,8 +11,10 @@ def load_model():
 
 model= load_model()
 
-path= 'Training_data'
+path= 'Training_data'    
 df= pd.read_csv('vestiaire.csv')
+X= df.drop(['price_usd', 'product_id', 'brand_id', 'brand_url', 'seller_id'], axis=1)
+y= df['price_usd']
 df['usually_ships_within']= df['usually_ships_within'].fillna(df['usually_ships_within'].mode())
 df['product_season']= df['product_season'].fillna('Spring / Summer')
 df['buyers_fees']= df['buyers_fees'].fillna(df['buyers_fees'].median())
@@ -34,8 +36,6 @@ df.rename(mapper={'product_gender_target':'target_audience','product_like_count'
 
 num_cols=df.drop(['product_id','brand_id','seller_id'],axis=1).select_dtypes(include=np.number)
 cat_cols=df.select_dtypes(include=['object','bool'])
-X= df.drop(['price_usd', 'product_id', 'brand_id', 'brand_url', 'seller_id'], axis=1)
-y= df['price_usd']
 
 X_train= df.drop(['price_usd'], axis=1)
 
