@@ -34,6 +34,8 @@ df.rename(mapper={'product_gender_target':'target_audience','product_like_count'
 
 num_cols=df.drop(['product_id','brand_id','seller_id'],axis=1).select_dtypes(include=np.number)
 cat_cols=df.select_dtypes(include=['object','bool'])
+X= data.drop(['price_usd', 'product_id', 'brand_id', 'brand_url', 'seller_id'], axis=1)
+y= data['price_usd']
 
 X_train= df.drop(['price_usd'], axis=1)
 
