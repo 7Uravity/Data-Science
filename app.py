@@ -12,7 +12,7 @@ def load_model():
 model= load_model()
 
 path= 'Training_data'
-df= pd.read_csv(path)
+df= pd.read_csv('vestiaire.csv')
 X_train= df.drop(['price_usd'], axis=1)
 
 brands= list(X_train['brand_name'].unique())
